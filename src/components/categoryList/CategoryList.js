@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const getData = async () => {
-  const res = await fetch("/api/categories");
+  const res = await fetch(`${process.env.BASE_URL}/api/categories` ||"http://localhost:3000/api/categories");
 
   if (!res.ok) {
     throw new Error("Failed fetching categories");

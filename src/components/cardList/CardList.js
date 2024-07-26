@@ -4,7 +4,7 @@ import Pagination from "../pagination/Pagination";
 import Card from "../card/Card";
 
 const getData = async (page, cat) => {
-  const res = await fetch(`/api/posts?page=${page}&cat=${cat || ""}`,{cache: 'no-store'});
+  const res = await fetch(`${process.env.BASE_URL}/api/posts?page=${page}&cat=${cat || ""}` || `http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,{cache: 'no-store'});
 
   if (!res.ok) {
     throw new Error("Failed fetching posts (cardList)");
