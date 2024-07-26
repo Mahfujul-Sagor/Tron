@@ -4,11 +4,7 @@ import Image from "next/image";
 import Comments from "@/components/comments/Comments";
 
 const getData = async (slug) => {
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`,{
-    headers: {
-      'Cache-Control': 'max-age=0, s-maxage=60, stale-while-revalidate=120',
-    },
-  });
+  const res = await fetch(`http://localhost:3000/api/posts/${slug}`);
 
   if (!res.ok) {
     throw new Error("Failed fetching post data");

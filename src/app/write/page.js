@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import styles from "./writePage.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import "react-quill/dist/quill.bubble.css";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -13,12 +13,12 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
-// import ReactQuill from "react-quill";
 import dynamic from "next/dynamic";
+
+const ReactQuill = dynamic(() => import('react-quill'), {ssr: false});
 
 const WritePage = () => {
   const { status } = useSession();
-  const ReactQuill = dynamic(() => import('react-quill'), {ssr: false});
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
@@ -70,6 +70,10 @@ const WritePage = () => {
 
     file && upload();
   }, [file]);
+
+  const handleChange = useCallback((content) => {
+    setValue(content);
+  }, []);
 
   if (status === "loading") {
     return <div className={styles.loading}>Loading...</div>;
@@ -151,7 +155,7 @@ const WritePage = () => {
           className={styles.textArea}
           theme="bubble"
           value={value}
-          onChange={setValue}
+          onChange={handleChange}
           placeholder="Tell your story..."
         />
       </div>
@@ -160,11 +164,6 @@ const WritePage = () => {
       </button>
     </div>
   );
-};
-
-export const metadata = {
-  title: "Write",
-  description: "This is the write page",
 };
 
 export default WritePage;

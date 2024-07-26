@@ -12,7 +12,7 @@ import { ModeToggle } from '../modeToggle/ModeToggle'
 export default function Navbar() {
 
   return (
-    <div className='nav-container h-[100px] flex justify-between items-center bg-transparent backdrop-blur-lg sticky top-0 left-0 right-0 z-[9999]'>
+    <div className='nav-container h-[100px] flex justify-between items-center bg-transparent backdrop-blur-3xl sticky top-0 left-0 right-0 z-[9999]'>
       <div className='socials flex gap-[10px] flex-1 max-lg:hidden'>
         <Image src={facebook} alt='facebook' width={34} height={34} />
         <Image src={instagram} alt='instagram' width={34} height={34} />
