@@ -4,7 +4,7 @@ import Image from "next/image";
 import Comments from "@/components/comments/Comments";
 
 const getData = async (slug) => {
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`);
+  const res = await fetch(`/api/posts/${slug}`);
 
   if (!res.ok) {
     throw new Error("Failed fetching post data");
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }) {
           alt: `${data?.title} image`,
         },
       ],
-      url: `https://localhost:3000/posts/${slug}`,
+      url: `/posts/${slug}`,
     },
   };
 }
